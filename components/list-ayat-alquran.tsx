@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { convertToArabicNumber } from "@/lib/convert-number-arabic";
+import Link from "next/link";
+import { ChevronLeft } from "lucide-react";
 
 interface ListAyat {
   data: [
@@ -16,6 +18,13 @@ interface ListAyat {
 export const ListAyat = ({ data }: ListAyat) => {
   return (
     <div className="space-y-2 mx-1 overflow-hidden">
+      <Link
+        href="/sehari-hari"
+        className="mb-16 font-medium text-xl text-primary underline flex items-center"
+      >
+        <ChevronLeft />
+        Back
+      </Link>
       <div className="my-8">
         <h1 className="text-center text-3xl font-bold">
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ

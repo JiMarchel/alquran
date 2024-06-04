@@ -1,3 +1,4 @@
+import { DoaSehariHari } from "@/components/doa-sehari-hari";
 import React from "react";
 
 const SehariHariIdPage = async ({ params }: { params: { id: string } }) => {
@@ -7,9 +8,7 @@ const SehariHariIdPage = async ({ params }: { params: { id: string } }) => {
   const data = await res.json();
   return (
     <div>
-      {data.map((v) => (
-        <div>{v.ayat}</div>
-      ))}
+      <DoaSehariHari data={data} />
     </div>
   );
 };

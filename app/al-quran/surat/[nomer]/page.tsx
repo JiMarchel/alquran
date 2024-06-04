@@ -1,4 +1,4 @@
-import { ListAyat } from "@/components/list-ayat";
+import { ListAyat } from "@/components/list-ayat-alquran";
 import React from "react";
 
 const SuratNomerPage = async ({ params }: { params: { nomer: string } }) => {

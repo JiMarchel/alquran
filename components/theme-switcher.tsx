@@ -15,7 +15,7 @@ export const ThemeSwitcher = () => {
             onClick={() => setTheme("dark")}
             variant="outline"
           >
-            <Sun />
+            <Sun className="text-primary" />
           </Button>
         ) : (
           <Button
@@ -23,12 +23,12 @@ export const ThemeSwitcher = () => {
             variant="outline"
             onClick={() => setTheme("light")}
           >
-            <Moon />
+            <Moon className="text-primary" />
           </Button>
         )}
       </div>
       <div className="flex flex-col items-center justify-center">
-        <h1 className="font-bold">
+        <h1 className="font-bold text-primary">
           {theme![0].toUpperCase() + theme!.slice(1)}
         </h1>
         <p className="text-muted-foreground text-sm font-medium underline">
