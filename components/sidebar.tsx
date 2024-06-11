@@ -75,9 +75,7 @@ export function Sidebar() {
           </SheetHeader>
 
           <SheetFooter>
-            <SheetClose asChild>
-              <ThemeSwitcher />
-            </SheetClose>
+            <ThemeSwitcher />
           </SheetFooter>
         </SheetContent>
       </Sheet>

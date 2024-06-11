@@ -29,13 +29,13 @@ export const ListSuratAlQuran = ({ data }: ListSurahAlquran) => {
   const decodedKeyword = decodeURI(param ?? "");
 
   const filteredData = data.filter(
-    (e) => e.nama.toLowerCase() === decodedKeyword,
+    (e) => e.nama.toLowerCase().includes(decodedKeyword)
   );
   const datas = filteredData.length > 0 ? filteredData : data;
 
   return (
     <div className="max-w-[400px] mx-auto grid gap-2">
-      <InputSearch />
+      <InputSearch placeholder="al kahfi, al kafirun, at tiin, nuh, asy syams, dll" />
       {param !== null && filteredData.length === 0 ? (
         <div className={`flex flex-col items-center justify-center h-screen`}>
           <h1 className="font-bold text-3xl">Not Found</h1>

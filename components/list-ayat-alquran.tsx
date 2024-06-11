@@ -19,7 +19,7 @@ export const ListAyat = ({ data }: ListAyat) => {
   return (
     <div className="space-y-2 mx-1 overflow-hidden">
       <Link
-        href="/sehari-hari"
+        href="/al-quran"
         className="mb-16 font-medium text-xl text-primary underline flex items-center"
       >
         <ChevronLeft />
