@@ -5,6 +5,8 @@ import { convertToArabicNumber } from "@/lib/convert-number-arabic";
 import Link from "next/link";
 import { InputSearch } from "./input-search";
 import { useSearchParams } from "next/navigation";
+import { Bookmark } from "lucide-react";
+import { Button } from "./ui/button";
 
 interface ListSurahAlquran {
   data: [
@@ -33,6 +35,23 @@ export const ListSuratAlQuran = ({ data }: ListSurahAlquran) => {
   );
   const datas = filteredData.length > 0 ? filteredData : data;
 
+
+  const addBookmark = (id: string) => {
+    const surat = data.find((e) => e.nomor === id);
+    const storage = localStorage.getItem("bookmark");
+
+    if (!surat) return;
+
+    let bookmarks: typeof data = storage ? JSON.parse(storage) : [];
+    if (bookmarks.some(bookmark => bookmark.nomor === surat.nomor)) {
+      return;
+    }
+    bookmarks.push(surat);
+
+    localStorage.setItem("bookmark", JSON.stringify(bookmarks));
+  };
+
+
   return (
     <div className="max-w-[400px] mx-auto grid gap-2">
       <InputSearch placeholder="al kahfi, al kafirun, at tiin, nuh, asy syams, dll" />
@@ -45,26 +64,31 @@ export const ListSuratAlQuran = ({ data }: ListSurahAlquran) => {
         </div>
       ) : (
         datas.map((e) => (
-          <Link key={e.nomor} href={`/al-quran/surat/${e.nomor}`}>
-            <Card className="grid grid-cols-12 hover:border-primary hover:bg-primary/10 cursor-pointer">
-              <CardHeader className="col-span-1 flex items-start pl-4">
-                <CardTitle>
-                  {convertToArabicNumber(parseInt(e.nomor))}
-                </CardTitle>
-              </CardHeader>
+          <div key={e.nomor} className="relative">
+            <Link href={`/al-quran/surat/${e.nomor}`}>
+              <Card className="grid grid-cols-12 hover:border-primary hover:bg-primary/10 cursor-pointer">
+                <CardHeader className="col-span-1 flex items-start pl-4">
+                  <CardTitle>
+                    {convertToArabicNumber(parseInt(e.nomor))}
+                  </CardTitle>
+                </CardHeader>
 
-              <CardHeader className="col-span-6 ml-3 pr-0">
-                <CardTitle>{e.nama}</CardTitle>
-                <CardDescription>
-                  {e.type[0].toUpperCase() + e.type.slice(1)} | {e.ayat} Ayat
-                </CardDescription>
-              </CardHeader>
+                <CardHeader className="col-span-6 ml-3 pr-0">
+                  <CardTitle>{e.nama}</CardTitle>
+                  <CardDescription>
+                    {e.type[0].toUpperCase() + e.type.slice(1)} | {e.ayat} Ayat
+                  </CardDescription>
+                </CardHeader>
 
-              <CardHeader className="col-span-5 flex items-center justify-items-end">
-                <CardTitle>{e.asma}</CardTitle>
-              </CardHeader>
-            </Card>
-          </Link>
+                <CardHeader className="col-span-5 flex items-end">
+                  <CardTitle >{e.asma}</CardTitle>
+                </CardHeader>
+              </Card>
+            </Link>
+            <Button variant="ghost" size="icon" onClick={() => addBookmark(e.nomor)} className="absolute bottom-1 right-3">
+              <Bookmark />
+            </Button>
+          </div>
         ))
       )}
     </div>

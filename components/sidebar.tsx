@@ -1,5 +1,5 @@
 "use client";
-import { HandHeart, Menu, MoonStar } from "lucide-react";
+import { BookmarkCheck, Calculator, HandHeart, Menu, MoonStar } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Button } from "./ui/button";
 import {
@@ -33,7 +33,20 @@ export function Sidebar() {
       icon: <HandHeart className="text-primary" />,
       name: "Doa sehari-hari",
     },
-  ];
+  ] as const
+
+  const othersPath = [
+    {
+      path: "/bookmark",
+      icon: <BookmarkCheck className="text-primary" />,
+      name: "Bookmark"
+    },
+    {
+      path: "/kalkulator",
+      icon: <Calculator className="text-primary" />,
+      name: "Kalkulator Zakat"
+    }
+  ] as const
 
   return (
     <div className="py-2 px-3 border-b border-primary sticky mb-5 inset-x-0 top-0 w-full backdrop-blur-lg transition-all flex justify-between">
@@ -43,7 +56,7 @@ export function Sidebar() {
             <Menu className="text-primary" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="flex flex-col justify-between">
+        <SheetContent side="left" className="flex flex-col justify-between py-10">
           <SheetHeader className="space-y-4 mb-4">
             <SheetTitle>
               <div className="flex items-center gap-2">
@@ -70,12 +83,30 @@ export function Sidebar() {
                     </Link>
                   ))}
                 </div>
+                <h1 className="text-gray-400 text-start mt-4 text-xl font-medium">Others</h1>
+                <div className="space-y-1">
+                  {othersPath.map((e) => (
+                    <Link
+                      onClick={() => setOpen(false)}
+                      key={e.path}
+                      href={e.path}
+                      className={`flex items-center gap-2 hover:bg-secondary py-2 px-2 rounded ${pathname.includes(e.path) && "text-primary bg-primary/10"}`}
+                    >
+                      {e.icon}
+                      <p className="font-medium">{e.name}</p>
+                    </Link>
+                  ))}
+
+                </div>
               </div>
             </SheetDescription>
           </SheetHeader>
 
           <SheetFooter>
-            <ThemeSwitcher />
+            <div className="space-y-4">
+
+              <ThemeSwitcher />
+            </div>
           </SheetFooter>
         </SheetContent>
       </Sheet>
