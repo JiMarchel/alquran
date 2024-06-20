@@ -5,27 +5,26 @@ import { convertToArabicNumber } from "@/lib/convert-number-arabic";
 import Link from "next/link";
 import { InputSearch } from "./input-search";
 import { useSearchParams } from "next/navigation";
-import { Bookmark } from "lucide-react";
-import { Button } from "./ui/button";
 
-interface ListSurahAlquran {
-  data: [
-    {
-      arti: string;
-      asma: string;
-      ayat: number;
-      nama: string;
-      type: string;
-      urut: string;
-      audio: string;
-      nomor: string;
-      rukuk: string;
-      keterangan: string;
-    },
-  ];
+interface Surah {
+  arti: string;
+  asma: string;
+  ayat: number;
+  nama: string;
+  type: string;
+  urut: string;
+  audio: string;
+  nomor: string;
+  rukuk: string;
+  keterangan: string;
 }
 
-export const ListSuratAlQuran = ({ data }: ListSurahAlquran) => {
+interface AlquranData {
+  data: Surah[];
+}
+
+
+export const ListSuratAlQuran = ({ data }: AlquranData) => {
   const searchParam = useSearchParams();
   const param = searchParam.get("search");
   const decodedKeyword = decodeURI(param ?? "");
@@ -34,23 +33,6 @@ export const ListSuratAlQuran = ({ data }: ListSurahAlquran) => {
     (e) => e.nama.toLowerCase().includes(decodedKeyword)
   );
   const datas = filteredData.length > 0 ? filteredData : data;
-
-
-  const addBookmark = (id: string) => {
-    const surat = data.find((e) => e.nomor === id);
-    const storage = localStorage.getItem("bookmark");
-
-    if (!surat) return;
-
-    let bookmarks: typeof data = storage ? JSON.parse(storage) : [];
-    if (bookmarks.some(bookmark => bookmark.nomor === surat.nomor)) {
-      return;
-    }
-    bookmarks.push(surat);
-
-    localStorage.setItem("bookmark", JSON.stringify(bookmarks));
-  };
-
 
   return (
     <div className="max-w-[400px] mx-auto grid gap-2">
@@ -85,9 +67,6 @@ export const ListSuratAlQuran = ({ data }: ListSurahAlquran) => {
                 </CardHeader>
               </Card>
             </Link>
-            <Button variant="ghost" size="icon" onClick={() => addBookmark(e.nomor)} className="absolute bottom-1 right-3">
-              <Bookmark />
-            </Button>
           </div>
         ))
       )}

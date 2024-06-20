@@ -37,11 +37,6 @@ export function Sidebar() {
 
   const othersPath = [
     {
-      path: "/bookmark",
-      icon: <BookmarkCheck className="text-primary" />,
-      name: "Bookmark"
-    },
-    {
       path: "/kalkulator",
       icon: <Calculator className="text-primary" />,
       name: "Kalkulator Zakat"
@@ -49,7 +44,7 @@ export function Sidebar() {
   ] as const
 
   return (
-    <div className="py-2 px-3 border-b border-primary sticky mb-5 inset-x-0 top-0 w-full backdrop-blur-lg transition-all flex justify-between">
+    <div className="py-2 px-3 border-b border-primary sticky mb-5 inset-x-0 top-0 w-full backdrop-blur-lg transition-all flex justify-between z-20">
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetTrigger asChild>
           <Button variant="outline" size="icon" onClick={() => setOpen(true)}>
