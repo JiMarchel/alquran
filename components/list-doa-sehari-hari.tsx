@@ -39,7 +39,7 @@ export const ListDoaSehariHari = ({ data }: InterfaceDoaSehariHari) => {
         </div>
       ) : (
         datas.map((v) => (
-          <Link href={`/sehari-hari/${v.id}`}>
+          <Link href={`/sehari-hari/${v.id}`} key={v.id}>
             <Card className="hover:border-primary hover:bg-primary/10 cursor-pointer">
               <CardHeader>
                 <CardTitle>
