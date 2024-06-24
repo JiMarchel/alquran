@@ -28,7 +28,7 @@ export const ListDoaSehariHari = ({ data }: InterfaceDoaSehariHari) => {
   const datas = filteredData.length > 0 ? filteredData : data;
 
   return (
-    <div className="max-w-[400px] mx-auto grid gap-2">
+    <div className="max-w-[400px] mx-auto grid gap-2 px-2 sm:max-w-[800px]">
       <InputSearch placeholder="sebelum tidur, bangun tidur, masuk kamar mandi, dll" />
       {param !== null && filteredData.length === 0 ? (
         <div className={`flex flex-col items-center justify-center h-screen`}>
@@ -40,7 +40,7 @@ export const ListDoaSehariHari = ({ data }: InterfaceDoaSehariHari) => {
       ) : (
         datas.map((v) => (
           <Link href={`/sehari-hari/${v.id}`}>
-            <Card className="hover:border-primary hover:bg-primary/10 cursor-pointer">
+            <Card className="">
               <CardHeader>
                 <CardTitle>
                   {v.id} - {v.doa}

@@ -35,7 +35,7 @@ export const ListSuratAlQuran = ({ data }: AlquranData) => {
   const datas = filteredData.length > 0 ? filteredData : data;
 
   return (
-    <div className="max-w-[400px] mx-auto grid gap-2">
+    <div className="max-w-[400px] mx-auto grid gap-2 px-2 sm:max-w-[800px]">
       <InputSearch placeholder="al kahfi, al kafirun, at tiin, nuh, asy syams, dll" />
       {param !== null && filteredData.length === 0 ? (
         <div className={`flex flex-col items-center justify-center h-screen`}>

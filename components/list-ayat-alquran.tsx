@@ -17,22 +17,22 @@ interface ListAyat {
 
 export const ListAyat = ({ data }: ListAyat) => {
   return (
-    <div className="space-y-2 mx-1 overflow-hidden">
+    <div className="max-w-[400px] space-y-2 mx-auto overflow-hidden px-2 sm:max-w-[800px] ">
       <Link
         href="/al-quran"
-        className="mb-16 font-medium text-xl text-primary underline flex items-center"
+        className=" font-medium text-xl text-primary flex items-end "
       >
         <ChevronLeft />
         Back
       </Link>
       <div className="my-8">
-        <h1 className="text-center text-3xl font-bold">
+        <h1 className="text-center text-3xl font-bold my-16 ">
           بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
         </h1>
       </div>
       {data.map((e) => (
         <Card
-          className="hover:border-primary hover:bg-primary/10 bg-gradient-to-t from-primary/20"
+          className=""
           key={e.nomor}
         >
           <CardHeader className="flex flex-row items-start justify-between">

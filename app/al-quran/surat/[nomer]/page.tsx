@@ -8,7 +8,7 @@ const SuratNomerPage = async ({ params }: { params: { nomer: string } }) => {
   const data = await res.json();
 
   return (
-    <div>
+    <div >
       <ListAyat data={data} />
     </div>
   );
