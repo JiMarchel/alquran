@@ -49,7 +49,7 @@ export function Sidebar() {
             <SheetTitle>
               <div className="flex items-center gap-2">
                 <MoonStar className="text-primary" />
-                <h1 className="text-xl font-medium">{title[0].toUpperCase() + title.slice(1)}</h1>
+                <h1 className="text-xl font-medium">{title ? title[0].toUpperCase() + title.slice(1) : "Al-Quran"}</h1>
               </div>
             </SheetTitle>
             <Separator />
